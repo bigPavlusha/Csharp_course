@@ -45,6 +45,7 @@ class FormalNeuronDemo
 
 	}
 
+	/*
 	static int[][] X = {
 		new int [] {0, 0, 0, 0},
 		new int [] {0, 0, 0, 1},
@@ -54,6 +55,35 @@ class FormalNeuronDemo
 	};
 
 	static int[] Y = { 0, 1, 1, 0, 1 };
+	*/
+
+	struct InputData //Создал стурктуру, скорее ради удобства заполнения данных, нежели для скорости работы программы
+	{
+		public int[] X;
+		public int Y;
+
+
+
+		public InputData(int[] dataX, int dataY) //Конструктор для заполнения данных стурктуры
+		{
+			X = dataX;
+			Y = dataY;
+		}
+
+		public void Print() => Console.WriteLine($"X: {X}  Y: {Y}"); //Просмотр данных структуры
+	}
+
+	static InputData[] VerifiedData = //массив выходных (обучаемых данных программы)
+	{
+		new InputData (new int [] {0, 0, 0, 0}, 0),
+		new InputData (new int [] {0, 0, 0, 1}, 1),
+		new InputData (new int [] {1, 1, 1, 0}, 1),
+		new InputData (new int [] {1, 1, 1, 0}, 0),
+		new InputData (new int [] {1, 1, 1, 1}, 1),
+
+	};
+
+	
 
 	static int[][] Test = {
 		new int [] {0, 0, 0, 0},
