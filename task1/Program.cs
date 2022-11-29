@@ -6,19 +6,22 @@ namespace task1
     {
         public static int Main(string[] args)
         {
-            int a = 0;
-            int b = 0;
+            int a = -1;
+            int b = -1;
             bool isValidA = false, isValidB = false;
+            int summaIntervala = 0;
+            int countValue = 0;
+            double meanValue;
+
             if (args.Length == 1)
             {
                 isValidA = Int32.TryParse(args[0], out a);
-                isValidB = false;
             }
 
             if (args.Length == 2)
             {
                 isValidA = Int32.TryParse(args[0], out a);
-                isValidB = Int32.TryParse(args[0], out b);
+                isValidB = Int32.TryParse(args[1], out b);
             }
 
             Console.WriteLine("Расчёт среднего значения в промежутке a-b");
@@ -53,7 +56,16 @@ namespace task1
                 }
 
             }
-            Console.WriteLine($"{a} {b}");
+
+            for (int i = Math.Min(a, b); i <= Math.Max(a, b); i++)
+            {
+                summaIntervala += i;
+                countValue++;
+            }
+
+            meanValue = (1.0 * summaIntervala) / countValue;
+
+            Console.WriteLine($"Среднее значение элементов в интервале {a}-{b} = {meanValue}");
             Console.ReadKey();
             return 1;
         }
