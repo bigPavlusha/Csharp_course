@@ -5,27 +5,38 @@ class FormalNeuronDemo
 {
 	class Neuron
 	{
-		double a = 0.02;
-		double b = -0.4;
-		public double[] w = { 0, 0, 0, 0 };
-		public int c = 0;
+		public double a { get; set; } = 0.02; //Открытый доступ для изменения переменной
+		public double b { get; set; } = -0.4;//Открытый доступ для изменения переменной
+		public double[] w { get; set; } = { 0, 0, 0, 0 };//Открытый доступ для изменения переменной
+		public int c { get; set; } = 0;//Открытый доступ для изменения переменной
 
-		public Neuron(int[][] X, int[] Y)
+
+		private int[][] X; //Закрытый доступ для раскрытия структуры (не хотел модифицировать код, решил раскрыть стурктуру)
+		private int[] Y; //Закрытый доступ для раскрытия структуры (не хотел модифицировать код, решил раскрыть стурктуру)
+
+		public Neuron(InputData[] datas)
 		{
+			X = new int[datas.Length][];
+			Y = new int[datas.Length];
+			for (int i = 0; i < datas.Length; i++)
+			{
+				X[i] = datas[i].X;
+				Y[i] = datas[i].Y;
+			}
 			while (learn(X, Y))
 			{
 				if (c++ > 10000) break;
 			}
 		}
 
-		public double calculate(int[] x)
+		public double calculate(int[] x) //Открытый доступ, потому что используется вне класса (в Main)
 		{
 			double s = b;
 			for (int i = 0; i < w.Length; i++) s += w[i] * x[i];
 			return (s > 0) ? 1 : 0;
 		}
 
-		bool learn(int[][] X, int[] Y)
+		bool learn(int[][] X, int[] Y) //Закрытый доступ по умолчанию
 		{
 			double[] w_ = new double[w.Length];
 
@@ -96,7 +107,7 @@ class FormalNeuronDemo
 
 	public static int Main()
 	{
-		Neuron neuron = new Neuron(X, Y);
+		Neuron neuron = new Neuron(VerifiedData);
 		Console.WriteLine("[{0}] {1}",
 			string.Join(", ", neuron.w),
 			neuron.c
