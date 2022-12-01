@@ -21,28 +21,28 @@ namespace task4
     {
         static int Main(string[] args)
         {
-            long memorySizeStart, memorySizeTotalArray, memorySizeTotalClass, memorySizeTotalStruct;
-            Random randomCount = new Random();
-            int randomValue;
-            string nameAdress, nameStreet, nameNumber;
-            Stopwatch timeWatch = new Stopwatch();
-            TimeSpan timeArray, timeClass, timeStruct;
+            long memorySizeStart, memorySizeTotalArray, memorySizeTotalClass, memorySizeTotalStruct; //Переменные хранения объема памяти
+            Random randomCount = new Random(); //Рандомный выбор из диапазона
+            int randomValue; //Значение рандомного выбора
+            string nameAdress, nameStreet, nameNumber; //Адресат, Улица, Номер дома
+            Stopwatch timeWatch = new Stopwatch(); //Рассчёт времени выполнения
+            TimeSpan timeArray, timeClass, timeStruct; //Хранение времени
 
 
-            Console.WriteLine("{0,-8} | {1,-10} {4,-20} | {2,-10} {4,-20} | {3,-10} {4,-20} |", 
-                "Элементы", "Массив", "Класс", "Структура", "");
+            Console.WriteLine("{0,-8} | {1,-10} {4,-20} | {2,-10} {4,-20} | {3,-10} {4,-20} |",  //Шапка табицы
+                "Элементы", "Массив", "Класс", "Структура", ""); 
             Console.WriteLine("{0,-8} | {1,-10} {2,-20} | {1,-10} {2,-20} | {1,-10} {2,-20} |",
                     "", "Memory", "Time");
 
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 5; i++) //Головной цикл анализа
             {
-                int startRandomInterval = 9 * Convert.ToInt32(Math.Pow(10, i));
-                int endRandomInterval = 10 * Convert.ToInt32(Math.Pow(10, i));
-                randomValue = randomCount.Next(startRandomInterval, endRandomInterval);
+                int startRandomInterval = 9 * Convert.ToInt32(Math.Pow(10, i)); //Начало интервала
+                int endRandomInterval = 10 * Convert.ToInt32(Math.Pow(10, i)); //Конец интервала
+                randomValue = randomCount.Next(startRandomInterval, endRandomInterval); //Рандомное значение из интервала
                 memorySizeStart = GC.GetTotalMemory(true);
                 timeWatch.Start();
                 Array[] ArrayAdressBook = new Array[randomValue];
-                for (int j = 0; j < randomValue; j++)
+                for (int j = 0; j < randomValue; j++) //Цикл оценки массива
                 {
                     nameAdress = "Name" + i;
                     nameStreet = "Street" + i;
@@ -56,7 +56,7 @@ namespace task4
                 GenerateElemenysClass[] ArrayAdressBookClass = new GenerateElemenysClass[randomValue];
                 memorySizeStart = GC.GetTotalMemory(true);
                 timeWatch.Start();
-                for (int j = 0; j < randomValue; j++)
+                for (int j = 0; j < randomValue; j++) //Цикл оценки класса
                 {
                     nameAdress = "Name" + i;
                     nameStreet = "Street" + i;
@@ -71,7 +71,7 @@ namespace task4
                 GenerateElemenysStruct[] ArrayAdressBookStruct = new GenerateElemenysStruct[randomValue];
                 memorySizeStart = GC.GetTotalMemory(true);
                 timeWatch.Start();
-                for (int j = 0; j < randomValue; j++)
+                for (int j = 0; j < randomValue; j++) //Цикл оценки структуры
                 {
                     nameAdress = "Name" + i;
                     nameStreet = "Street" + i;
@@ -83,7 +83,7 @@ namespace task4
                 timeWatch.Stop();
                 timeStruct = timeWatch.Elapsed;
 
-                Console.WriteLine("{0,-8} | {1,-10} {2,-20} | {3,-10} {4,-20} | {5,-10} {6,-20} |", 
+                Console.WriteLine("{0,-8} | {1,-10} {2,-20} | {3,-10} {4,-20} | {5,-10} {6,-20} |",  //Вывод данных
                     randomValue, memorySizeTotalArray, timeArray,
                                  memorySizeTotalClass, timeClass,
                                  memorySizeTotalStruct, timeStruct);
