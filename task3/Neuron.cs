@@ -11,25 +11,22 @@ namespace task3
 		public int c { get; set; } = 0;//Открытый доступ для изменения переменной
 
 
-		//private int[][] X; //Закрытый доступ для раскрытия структуры (не хотел модифицировать код, решил раскрыть стурктуру)
-		//private int[] Y; //Закрытый доступ для раскрытия структуры (не хотел модифицировать код, решил раскрыть стурктуру)
-
-		public Neuron(InputData[] datas)
+		public Neuron(InputData[] datas) //Конструктор принимает стурктуру InputData
 		{
-			while (learn(datas))
+			while (learn(datas)) //Функция learn - работает со структурой IputData
 			{
 				if (c++ > 10000) break;
 			}
 		}
 
-		public double calculate(int[] x) //Открытый доступ, потому что используется вне класса (в Main)
+		public double calculate(int[] x) //Открытый доступ, потому что используется вне класса (в Main), остался неизменныый за счёт структуры структуры
 		{
 			double s = b;
 			for (int i = 0; i < w.Length; i++) s += w[i] * x[i];
 			return (s > 0) ? 1 : 0;
 		}
 
-		bool learn(InputData[] datas) //Закрытый доступ по умолчанию
+		bool learn(InputData[] datas) //Закрытый доступ по умолчанию, работаем со структурой InputData
 		{
 			double[] w_ = new double[w.Length];
 

@@ -6,8 +6,8 @@ namespace task3
 	{ 
 		public static int Main()
 		{
-			InputData inputSet = new InputData();
-			testData testSet = new testData();
+			InputData inputSet = new InputData(); //Набор входных данных
+			testData testSet = new testData(); //Набор текстовых данных
 
 			Neuron neuron = new Neuron(inputSet.inputDatas);
 			Console.WriteLine("[{0}] {1}",

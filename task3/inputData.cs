@@ -2,10 +2,10 @@
 
 namespace task3
 {
-    struct InputData //Создал стурктуру, скорее ради удобства заполнения данных, нежели для скорости работы программы
+    struct InputData //Структура для удобства заполненя и работы с входными данными (удобство заполнения и организации работы)
 	{
-		public int[] X;
-		public int Y;
+		public int[] X; //Массив Х
+		public int Y; //Массив Y
 
 		public InputData(int[] dataX, int dataY) //Конструктор для заполнения данных стурктуры
 		{
@@ -13,7 +13,7 @@ namespace task3
 			Y = dataY;
 		}
 
-		public InputData[] inputDatas
+		public InputData[] inputDatas //Поле массива структуры
         {
 			get
             {

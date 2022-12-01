@@ -2,9 +2,9 @@
 
 namespace task3
 {
-    public struct testData
+    public struct testData //Структура для тестовых данных, удобство заполнения
     {
-        public int[][] testDatas
+        public int[][] testDatas //Массив тестовых данных
         {
             get
             {
