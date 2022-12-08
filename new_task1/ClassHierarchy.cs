@@ -54,6 +54,11 @@ namespace new_task1
     class Car : Transport //Автомобиль, наследую от транспорта
     {
         public string Mark; //Маорка автомобиль
+
+        public Car(string mark) : base() //Констурктор
+        {
+            Mark = mark;
+        }
         public Car(string color, int year, int weight, string mark) : base(color, year, weight) //Констурктор
         {
             Mark = mark;
@@ -77,6 +82,11 @@ namespace new_task1
     class Truck : Car //Грузовик, наследую от автомаобиля
     { 
         public int LoadCapacity; //Загрузка грузовика
+        public Truck(string mark, int loadCapacity) : base(mark) //Конструктор
+        {
+            LoadCapacity = loadCapacity;
+        }
+
         public Truck(string color, int year, int weight, string mark, int loadCapacity) : base(color, year, weight, mark) //Конструктор
         {
             LoadCapacity = loadCapacity;
