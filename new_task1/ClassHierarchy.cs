@@ -26,7 +26,6 @@ namespace new_task1
             Weight = weight;
         }
         public abstract void Information(); //Метод вывода на экран информация, дополнительно переопределю ToString()
-
     }
 
     class Train : Transport //Поезд, наследую от транспорта
@@ -40,10 +39,15 @@ namespace new_task1
         public override void Information() //Переопределяю метод
         {
             Console.WriteLine("Train");
-            Console.WriteLine($"Year: {base.Year}\n" +
-                              $"Weight: {base.Weight}\n" +
-                              $"Color: {base.Color}");
+            Console.WriteLine($"Year: {Year}\n" +
+                              $"Weight: {Weight}\n" +
+                              $"Color: {Color}");
             Console.WriteLine($"Сarriages: {Сarriages}\n");
+        }
+
+        public override string ToString() //Переопределил метод ToString()
+        {
+            return $"Type : Train, color : {Color}, year : {Year}, weight : {Weight}, carriages : {Сarriages}";
         }
     }
 
@@ -58,10 +62,15 @@ namespace new_task1
         public override void Information()
         {
             Console.WriteLine("Car");
-            Console.WriteLine($"Year: {base.Year}\n" +
-                              $"Weight: {base.Weight}\n" +
-                              $"Color: {base.Color}");
+            Console.WriteLine($"Year: {Year}\n" +
+                              $"Weight: {Weight}\n" +
+                              $"Color: {Color}");
             Console.WriteLine($"Mark: {Mark}\n");
+        }
+
+        public override string ToString() //Переопределил метод ToString()
+        {
+            return $"Type : Car, color : {Color}, year : {Year}, weight : {Weight}, mark : {Mark}";
         }
     }
 
@@ -82,6 +91,11 @@ namespace new_task1
                               $"Color: {base.Color}\n");
             Console.WriteLine($"LoadCapacity: {LoadCapacity}\n");
         }
+
+        public override string ToString() //Переопределил метод ToString()
+        {
+            return $"Type : Car, Subtype : Truck, color : {Color}, year : {Year}, weight : {Weight}, load capacity : {LoadCapacity}";
+        }
     }
 
     class Passenger : Car //Легковой автомобиль
@@ -100,6 +114,11 @@ namespace new_task1
                               $"Weight: {base.Weight}\n" +
                               $"Color: {base.Color}\n");
             Console.WriteLine($"PassengerType: {PassengerType}\n");
+        }
+
+        public override string ToString() //Переопределил метод ToString()
+        {
+            return $"Type : Car, Subtype : Passenger Car, color : {Color}, year : {Year}, weight : {Weight}, passenger type : {PassengerType}";
         }
     }
 }
