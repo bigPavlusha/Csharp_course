@@ -1,0 +1,32 @@
+using System;
+
+namespace new_task
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string str = Console.ReadLine().ToLower();
+            int lenStr = str.Length;
+            int lenStrHalf = (str.Length - str.Length%2)/2;
+            bool isPalindrom = true;
+            for (int i = 0; i <= lenStrHalf; i++)
+            {
+                if (str[i] != str[lenStr - i-1])
+                {
+                    isPalindrom = false;
+                    break;
+                }
+            }
+            if (isPalindrom)
+            {
+                Console.WriteLine("Палиднром");
+            }
+            else
+            {
+                Console.WriteLine("Не палиндром");
+            }
+
+        }
+    }
+}
