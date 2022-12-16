@@ -1,0 +1,210 @@
+==================================================================================================================================
+//olimp_task1 (Сумма двух)
+//https://leetcode.com/problems/two-sum/
+public class Solution 
+{
+    public int[] TwoSum(int[] nums, int target)
+    {
+        Dictionary<int, int> findDict = new Dictionary<int, int>();
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (!findDict.ContainsKey(nums[i]))
+            {
+                findDict[target-nums[i]] = i;
+            }
+            else
+            {
+                return new int[] { findDict[nums[i]], i};
+            }
+        }
+
+        return new int[] { -1, -1};
+    }
+}
+==================================================================================================================================
+//olimp_task3 (Палиндром)
+//https://leetcode.com/problems/palindrome-number/solutions/
+public class Solution 
+{
+    public bool IsPalindrome(int x) 
+    {
+        string str = Convert.ToString(x).ToLower();
+        int lenStr = str.Length;
+        int lenStrHalf = lenStr / 2;
+        for (int i = 0; i <= lenStrHalf; i++)
+        {
+            if (str[i] != str[lenStr - i - 1])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+}
+==================================================================================================================================
+//olimp_task3 (Перевод римских)
+//https://leetcode.com/problems/roman-to-integer/
+public class Solution {
+    public int RomanToInt(string s) {
+        var rome = new Dictionary<char, int>()
+        {
+            { 'I', 1},
+            { 'V', 5},
+            { 'X', 10},
+            { 'L', 50},
+            { 'C', 100},
+            { 'D', 500},
+            { 'M', 1000}
+        }; //MCMLXXXII - 1982
+
+        string romeNumber = s;
+        int digitNumber = 0;
+        for (int i = 0; i < romeNumber.Length-1; i++)
+        {
+            if (rome[romeNumber[i]] >= rome[romeNumber[i+1]])
+            {
+                digitNumber += rome[romeNumber[i]];
+            }
+            else
+            {
+                digitNumber -= rome[romeNumber[i]];
+            }
+        }
+        digitNumber += rome[romeNumber[romeNumber.Length - 1]];
+        return digitNumber;
+    }
+}
+==================================================================================================================================
+//olimp_task4 (Бувенные комбинации)
+//https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+public class Solution
+{
+    static readonly Dictionary<string, string> PhoneDict = new Dictionary<string, string>()
+    {
+        { "2", "abc" },
+        { "3", "def" },
+        { "4", "ghi" },
+        { "5", "jkl" },
+        { "6", "mno" },
+        { "7", "pqrs" },
+        { "8", "tuv" },
+        { "9", "wxyz" }
+    };
+
+    public List<string> result;
+    public void Code(string itog, string numbers)
+    {
+        if (numbers.Length == 0)
+        {
+            result.Add(itog);
+            return;
+        }
+
+        string number = numbers.Substring(0, 1);
+        string chars = PhoneDict[number];
+        for (int i = 0; i < chars.Length; i++)
+        {
+            var ch = chars[i];
+            Code(itog + ch, numbers.Substring(1));
+        }
+    }
+
+    public IList<string> LetterCombinations(string digits)
+    {
+        result = new List<string>();
+        if (digits.Length == 0)
+        {
+            return result;
+        }
+        Code("", digits);
+        return result;
+    }
+}
+==================================================================================================================================
+//olimp_task5 (Минимальный префикс)
+//https://leetcode.com/problems/longest-common-prefix/solutions/
+public class Solution
+{
+    public string LongestCommonPrefix(string[] strings)
+    {
+        string[] findArray = strings.Select(x => x.ToLower()).ToArray();
+        int lenWord = int.MaxValue;
+        string minWord = "";
+        bool isCool = true;
+        foreach (var word in findArray)
+        {
+            if (word.Length < lenWord)
+            {
+                lenWord = word.Length;
+                minWord = word;
+            }
+        }
+        for (int i = lenWord; i != 0; i--)
+        {
+            string subMinWord = minWord.Substring(0, i);
+            foreach (var word in findArray)
+            {
+                if (!word.Contains(subMinWord))
+                {
+                    isCool = false;
+                }
+
+            }
+            if (isCool)
+                {
+                    return subMinWord;
+                }
+            isCool = true;
+        }
+        return "";
+    }
+}
+==================================================================================================================================
+//olimp_task6 (Последовательность)
+//https://leetcode.com/problems/is-subsequence/
+public class Solution {
+    public bool IsSubsequence(string s, string t)
+        {
+            int n = s.Length;
+            int m = t.Length;
+            int j = 0;
+
+            for (int i = 0; (i < m && j < n); i++)
+            {
+                if (s[j] == t[i])
+                {
+                    j++;
+                } 
+            }
+            return j == n;
+        }
+}
+==================================================================================================================================
+//olimp_task7 (Отсутствующие члены)
+//https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/
+public class Solution
+    {
+        public IList<int> FindDisappearedNumbers(int[] nums)
+        {
+            Dictionary<int, int> findDict = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!findDict.ContainsKey(nums[i]))
+                {
+                    findDict[nums[i]] = 1;
+                }
+            }
+
+            List<int> result = new List<int>();
+            for (int i = 1; i <= nums.Length; i++)
+            {
+                if (!findDict.ContainsKey(i))
+                {
+                    result.Add(i);
+                }
+            }
+            return result;
+        }
+    }
